@@ -16,15 +16,15 @@ df_cleaned = df[(df['value'] >= lower_quantile) & (df['value'] <= upper_quantile
 
 def draw_line_plot():
     plt.subplots(figsize = (20,5))
-    sns.lineplot(x='date', y='value', data=df_cleaned).set(title = 'Daily freeCodeCamp Forum Page Views 5/2016-12/2019', xlabel='Date', ylabel='Page Views');
+    line_plot = sns.lineplot(x='date', y='value', data=df_cleaned).set(title = 'Daily freeCodeCamp Forum Page Views 5/2016-12/2019', xlabel='Date', ylabel='Page Views');
 
 
-
+    fig = line_plot.fig
 
 
     # Save image and return fig (don't change this part)
-    plt.savefig('line_plot.png')
-    return plt
+    fig.savefig('line_plot.png')
+    return fig
 
 # def draw_bar_plot():
 #     # Copy and modify data for monthly bar plot
