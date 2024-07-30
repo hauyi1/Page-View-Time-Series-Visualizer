@@ -58,8 +58,11 @@ def draw_box_plot():
     # Draw box plots (using Seaborn)
     fig, axs = plt.subplots(ncols=2, figsize=(18,6))
     sns.boxplot(data=df_box, x='Year', y='value', flierprops={"marker": "."}, ax=axs[0])
+    axs[0].set(ylabel='Page Views', xlabel='Year')
+    axs[0].set_title('Year-wise Box Plot (Trend)')
     sns.boxplot(data=df_box, x='Month', y='value', flierprops={"marker": "."}, ax=axs[1], order= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
-
+    axs[1].set(ylabel='Page Views', xlabel='Month')
+    axs[1].set_title('Month-wise Box Plot (Seasonality)')
 
     # Save image and return fig (don't change this part)
     fig.savefig('box_plot.png')
