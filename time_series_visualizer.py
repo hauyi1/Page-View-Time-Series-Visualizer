@@ -51,14 +51,14 @@ def draw_bar_plot():
 def draw_box_plot():
     # Prepare data for box plots (this part is done!)
     df_box = df.copy()
-    df_box.reset_index(inplace=True)
-    df_box['year'] = [d.year for d in df_box.date]
-    df_box['month'] = [d.strftime('%b') for d in df_box.date]
+    df_box['Month'] = pd.DatetimeIndex(df_box['date']).month
+    df_box['Year'] = pd.DatetimeIndex(df_box['date']).year
+    df_box['Month'] = df_box['Month'].apply(lambda x: calendar.month_abbr[x])
 
     # Draw box plots (using Seaborn)
-    fig, axs = plt.subplots(ncols=2)
-    sns.boxplot(data=df_box, x='year', y='value')
-    sns.boxplot(data=df_box, x='month', y='value')
+    fig, axs = plt.subplots(ncols=2, figsize=(18,6))
+    sns.boxplot(data=df_box, x='Year', y='value', flierprops={"marker": "."}, ax=axs[0])
+    sns.boxplot(data=df_box, x='Month', y='value', flierprops={"marker": "."}, ax=axs[1], order= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
 
 
     # Save image and return fig (don't change this part)
