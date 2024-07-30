@@ -28,7 +28,7 @@ def draw_line_plot():
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
-    df_bar = df
+    df_bar = df.copy()
     df_bar['Month'] = pd.DatetimeIndex(df_bar['date']).month
     df_bar['Year'] = pd.DatetimeIndex(df_bar['date']).year
     df_bar['Month'] = df_bar['Month'].apply(lambda x: calendar.month_name[x])
@@ -56,9 +56,9 @@ def draw_box_plot():
     df_box['month'] = [d.strftime('%b') for d in df_box.date]
 
     # Draw box plots (using Seaborn)
-
-
-
+    fig, axs = plt.subplots(ncols=2)
+    sns.boxplot(data=df_box, x='year', y='value')
+    sns.boxplot(data=df_box, x='month', y='value')
 
 
     # Save image and return fig (don't change this part)
