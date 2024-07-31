@@ -40,6 +40,7 @@ def draw_bar_plot():
                 hue = 'Month',
                 data = df_bar,
                 hue_order = hue_order,
+                palette="tab10",
                 errorbar=('ci', 0)
                 )
 
